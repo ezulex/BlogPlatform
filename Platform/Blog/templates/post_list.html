@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Список постов{% endblock %}
+
+{% block content %}
+  <h1 class="fst-italic">Лента</h1>
+
+
+<h3>Фильтр:</h3>
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input class="btn btn-secondary btn-sm" type="submit" />
+    </form>
+<hr>
+    {% for post in filter.qs %}
+        <h3><a href="{% url 'post_retrive' post.pk %}"
+             class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            {{ post.title }}</a></h3>
+      <span class="small fst-italic">Aвтор: {{post.author}}</span>
+      <br>
+      <span class="small fst-italic">Дата: {{post.date_posted}}</span>
+      <hr>
+    {% empty %}
+    <p>Постов нет</p>
+    {% endfor %}
+
+
+<!--    {% for post in posts %}-->
+<!--      <h3><a href="{% url 'post_retrive' post.pk %}"-->
+<!--             class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">-->
+<!--            {{ post.title }}</a></h3>-->
+<!--      <span class="small fst-italic">Aвтор: {{post.author}}</span>-->
+<!--      <br>-->
+<!--      <span class="small fst-italic">Дата: {{post.date_posted}}</span>-->
+<!--      <hr>-->
+<!--    {% empty %}-->
+<!--    <p>Постов нет</p>-->
+<!--    {% endfor %}-->
+{% endblock %}

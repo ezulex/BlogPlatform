@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <h1>Регистрация</h1>
+    <p>Для регистрации заполните, пожалуйста, форму:</p>
+    <form method="POST" enctype="multipart/form-data">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <button class="btn btn-secondary btn-sm" type="submit">Зарегистрироваться</button>
+    </form>
+{% endblock %}
