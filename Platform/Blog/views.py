@@ -24,6 +24,18 @@ def post_create(request):
     return render(request, 'post_create.html', {'form': form})
 
 
+@login_required(login_url='/login/')
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    return redirect('post_list')
+
+@login_required(login_url='/login/')
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return redirect('post_list')
+
+
 def post_retrive(request, pk):
     post = get_object_or_404(Post, pk=pk)
 
@@ -66,7 +78,7 @@ def register(request):
 
 
 @login_required
-def edit(request):
+def user_edit(request):
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user, data=request.POST)
 
@@ -76,5 +88,4 @@ def edit(request):
                           {'user_form': user_form, 'user_update_result': 'Ваш профиль обновлён'})
     else:
         user_form = UserEditForm(instance=request.user)
-    return render(request,'user_edit.html',{'user_form': user_form})
-
+    return render(request, 'user_edit.html', {'user_form': user_form})

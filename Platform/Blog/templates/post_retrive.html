@@ -6,8 +6,18 @@
     <h1>{{ post.title }}</h1>
         <span class="small fst-italic">{{post.author}},</span>
         <span class="small fst-italic">{{post.date_posted}}</span>
+        <br>
+
+        {% if user.is_authenticated and user.username == post.author.username %}
+        <span class="small fst-italic"><a href="{% url 'post_delete' post.pk %}">Удалить, </a></span>
+        <span class="small fst-italic"><a href="#">Изменить</a></span>
+        <br>
+        {% else %}
+        {% endif %}
+        <hr>
+
     <p>{{ post.description }}</p>
-<hr>
+    <hr>
 
     <h3>Комментарии:</h3>
     {% for comment in post.comments.all %}
