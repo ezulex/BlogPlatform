@@ -55,6 +55,7 @@ def post_retrive(request, pk):
             new_comment.post = post
             new_comment.request = request
             new_comment.save()
+            return redirect(request.path)
     else:
         comment_form = CommentForm()
     return render(request,

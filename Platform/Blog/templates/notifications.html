@@ -7,7 +7,7 @@
     {% if notifications %}
         <ul>
             {% for notification in notifications %}
-                <li>{{ notification.message }}</li>
+                <li>{{ notification.message }}  <a href="{% url 'post_retrive' notification.post_id %}">{{notification.post_name}}</a></li>
             {% endfor %}
         </ul>
     {% else %}

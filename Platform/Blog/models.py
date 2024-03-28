@@ -38,6 +38,8 @@ class Notification(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False)
+    post_id = models.TextField(null=True)
+    post_name = models.TextField(null=True)
 
 
 @receiver(post_save, sender=Comment)
@@ -47,8 +49,11 @@ def send_comment_notification(sender, instance, created, **kwargs):
         comment_author = instance.author
         post_title = instance.post.title
         date = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+        id = instance.post.id
 
         Notification.objects.create(
             user=post_author,
-            message=f"{date}: Пользователь {comment_author.username} оставил новый комментарий к вашему посту '{post_title}'."
+            message=f"{date}: Пользователь {comment_author.username} оставил новый комментарий к вашему посту ",
+            post_name=post_title,
+            post_id=id
         )
