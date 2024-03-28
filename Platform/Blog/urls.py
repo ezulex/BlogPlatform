@@ -12,4 +12,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/', views.user_edit, name='user_edit'),
     path('delete/<int:pk>', views.post_delete, name='post_delete'),
+    path('post_edit/<int:pk>/', views.post_edit, name='post_edit'),
+    path('notifications/', views.notifications, name='notifications'),
 ]

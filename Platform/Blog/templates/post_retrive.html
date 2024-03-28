@@ -10,7 +10,7 @@
 
         {% if user.is_authenticated and user.username == post.author.username %}
         <span class="small fst-italic"><a href="{% url 'post_delete' post.pk %}">Удалить, </a></span>
-        <span class="small fst-italic"><a href="#">Изменить</a></span>
+        <span class="small fst-italic"><a href="{% url 'post_edit' post.pk %}">Изменить</a></span>
         <br>
         {% else %}
         {% endif %}

@@ -17,6 +17,7 @@
         <li class="nav-item"><a href="{% url 'post_create' %}" class="nav-link">Добавить пост</a></li>
 
       {% if user.is_authenticated %}
+        <li class="nav-item"><a href="{% url 'notifications' %}" class="nav-link">Уведомления</a></li>
         <li class="nav-item"><a href="{% url 'user_edit' %}" class="nav-link">{{user.username}}</a></li>
         <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Выход</a></li>
 
